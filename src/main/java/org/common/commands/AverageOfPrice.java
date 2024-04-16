@@ -9,7 +9,7 @@ import java.io.Serializable;
 /**
  * The command to display the average price
  */
-
+//sa
 public class AverageOfPrice extends Command implements Serializable {
     @Serial
     private static final long serialVersionUID = "AverageOfPrice".hashCode();
