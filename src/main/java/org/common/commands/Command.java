@@ -9,6 +9,7 @@ import org.common.utility.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.net.SocketAddress;
 
 /**
  * Interface for the command
@@ -37,5 +38,6 @@ public abstract class Command implements Serializable {
     protected Ticket ticketArg=null;
     protected static final Collection collection = Collection.getInstance();
     protected  transient    Console console ;
+    private transient SocketAddress address;
 
 }

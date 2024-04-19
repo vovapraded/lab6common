@@ -17,14 +17,14 @@ public class PrintDescending extends Command implements Serializable {
     @Override
     public void execute() {
         if (collection.getHashMap().isEmpty()){
-            console.addToSend("Коллекция пуста");
+            console.addToSend("Коллекция пуста",getAddress());
         }
         else{
             collection.getHashMap().values().stream()
                     .sorted(Comparator.reverseOrder())
-                    .forEach(ticket -> console.addToSend(ticket.toString()) );
+                    .forEach(ticket -> console.addToSend(ticket.toString() ,getAddress()));
         }
-        console.send();
+        console.send(getAddress());
 
     }
 }

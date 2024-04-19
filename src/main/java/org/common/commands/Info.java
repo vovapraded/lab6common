@@ -17,7 +17,7 @@ public class Info extends Command implements Serializable {
     public void execute(){
         String s = "Дата инициализации "+collection.getCurrentDate()+
                 ", Тип коллекции - HashMap, Кол-во элементов "+collection.getCountOfElements();
-        console.addToSend(s);
-        console.send();
+        console.addToSend(s,getAddress());
+        console.send(getAddress());
     }
 }

@@ -16,7 +16,7 @@ public class Clear extends Command implements Serializable {
     @Override
     public void execute() {
         collection.clearCollection();
-        console.addToSend("Коллекция очищена");
-        console.send();
+        console.addToSend("Коллекция очищена",getAddress());
+        console.send(getAddress());
     }
 }

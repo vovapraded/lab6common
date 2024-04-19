@@ -17,24 +17,29 @@ public class ReplaceIfGreater extends Command implements Serializable {
 
 
     public void execute(){
-        var idstr = stringArg;
-        ValidateId.validateId(idstr,false,collection);
-        Long id = Long.parseLong(idstr);
+        var idStr = stringArg;
+        try {
+            ValidateId.validateId(idStr, false, collection);
+        }catch (InvalidFormatException e){
+            e.setAddress(getAddress());
+            throw e;
+        }
+        Long id = Long.parseLong(idStr);
         Ticket oldTicket = collection.getElement(id);
         System.out.println(oldTicket);
         Ticket newTicket = ticketArg ;
         System.out.println(newTicket);
 
         if (newTicket.compareTo(oldTicket)>0){
-            console.addToSend("Операция прошла успешно. Замена произошла");
+            console.addToSend("Операция прошла успешно. Замена произошла",getAddress());
             collection.removeElement(id);
             newTicket.setId(id);
             collection.insertElement(newTicket);
         }
         else {
-            console.addToSend("Операция прошла успешно. Замена не произошла");
+            console.addToSend("Операция прошла успешно. Замена не произошла",getAddress());
         }
-        console.send();
+        console.send(getAddress());
 
     }
 }

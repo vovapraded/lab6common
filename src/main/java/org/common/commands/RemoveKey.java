@@ -1,6 +1,7 @@
 package org.common.commands;
 
 import org.common.utility.Console;
+import org.common.utility.InvalidFormatException;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -15,9 +16,16 @@ public class RemoveKey extends Command implements Serializable {
 
     public void execute(){
         var idStr = stringArg;
-        collection.removeElement(ValidateId.validateId(idStr,false,collection));
-        console.addToSend("Элемент удалён");
-        console.send();
+        Long id = null;
+        try {
+            id = ValidateId.validateId(idStr, false, collection);
+        }catch (InvalidFormatException e){
+            e.setAddress(getAddress());
+            throw e;
+        }
+        collection.removeElement(id);
+        console.addToSend("Элемент удалён",getAddress());
+        console.send(getAddress());
 
     }
 }

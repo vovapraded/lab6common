@@ -1,5 +1,6 @@
 package org.common.utility;
 
+import java.net.SocketAddress;
 import java.util.Scanner;
 
 /**
@@ -9,11 +10,11 @@ public abstract   class Console {
     protected Console(){
     }
 
-    public abstract void addToSend(String s);
+    public abstract  void addToSend( String s,SocketAddress address);
 
     public abstract void selectFileScanner(Scanner scanner);
 
-    public abstract void send();
+    public abstract void send(SocketAddress address);
 
     public abstract String getInputFromCommand(int minCountOfArgs,int maxCountOfArgs) ;
 

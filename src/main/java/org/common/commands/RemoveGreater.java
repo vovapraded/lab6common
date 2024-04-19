@@ -22,8 +22,8 @@ public class RemoveGreater extends Command implements Serializable {
     public void execute() {
             Ticket ticket = ticketArg;
             collection.removeGreater(ticket);
-            console.addToSend("Удалено успешно");
-        console.send();
+            console.addToSend("Удалено успешно",getAddress());
+        console.send(getAddress());
 
     }
 }

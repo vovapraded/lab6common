@@ -52,6 +52,5 @@ public class ExecuteScript extends Command implements Serializable {
             }catch (SecurityException e){
                 throw new InvalidFormatException("Нет прав доступа");
         }
-        console.send();
     }
 }

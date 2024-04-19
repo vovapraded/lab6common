@@ -2,6 +2,7 @@ package org.common.commands;
 
 
 import org.common.utility.Console;
+import org.common.utility.InvalidFormatException;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,16 +19,21 @@ public class RemoveGreaterKey extends Command implements  Serializable {
     @Override
     public void execute() {
             var idStr=stringArg;
-            Long id =ValidateId.validateId(idStr,false,collection);
-            int sizeBefore = collection.getCountOfElements();
+            Long id = null;
+        try {
+            ValidateId.validateId(idStr, false, collection);
+        }catch (InvalidFormatException e){
+            e.setAddress(getAddress());
+            throw e;
+        }            int sizeBefore = collection.getCountOfElements();
             collection.removeGreaterKey(id);
             int sizeAfter = collection.getCountOfElements();
             if (sizeAfter != sizeBefore) {
-                console.addToSend("Успешно удалено");
+                console.addToSend("Успешно удалено",getAddress());
             }else {
-                console.addToSend("Нет таких элементов");
+                console.addToSend("Нет таких элементов",getAddress());
             }
-        console.send();
+        console.send(getAddress());
 
 
 

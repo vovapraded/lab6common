@@ -24,17 +24,17 @@ public class FilterLessThanVenue extends Command implements Serializable {
         var capacityStr = stringArg;
         //если у каких-то билетов capacity=null то они в любом случае выписываются
             if (!Validator.validate(capacityStr,TypesOfArgs.Long,true)){
-                throw new InvalidFormatException("Вместимость должна быть числом");
+                throw new InvalidFormatException("Вместимость должна быть числом",getAddress());
             }
             Long capacity= Long.parseLong(capacityStr);
             List<Ticket> filtered = collection.filterLessThanVenue(capacity);
             if (filtered.isEmpty()){
-                console.addToSend("Нет таких элементов");
+                console.addToSend("Нет таких элементов",getAddress());
             }
             for (Ticket ticket : filtered){
-                console.addToSend(ticket.toString());
+                console.addToSend(ticket.toString(),getAddress());
             }
-        console.send();
+        console.send(getAddress());
 
     }
 }
