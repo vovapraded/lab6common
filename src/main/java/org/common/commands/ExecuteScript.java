@@ -53,4 +53,9 @@ public class ExecuteScript extends Command implements Serializable {
                 throw new InvalidFormatException("Нет прав доступа");
         }
     }
+
+    @Override
+    public void validate(String arg1) {
+
+    }
 }

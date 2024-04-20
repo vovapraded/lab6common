@@ -1,7 +1,6 @@
 package org.common.commands;
 
 import org.common.managers.*;
-import org.common.utility.*;
 
 
 import java.io.Serial;
@@ -28,6 +27,11 @@ public class Save extends Command implements Serializable {
         console.send(getAddress());
 
 
+
+    }
+
+    @Override
+    public void validate(String arg1) {
 
     }
 }

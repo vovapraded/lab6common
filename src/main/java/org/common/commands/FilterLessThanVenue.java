@@ -23,9 +23,7 @@ public class FilterLessThanVenue extends Command implements Serializable {
     public void execute() {
         var capacityStr = stringArg;
         //если у каких-то билетов capacity=null то они в любом случае выписываются
-            if (!Validator.validate(capacityStr,TypesOfArgs.Long,true)){
-                throw new InvalidFormatException("Вместимость должна быть числом",getAddress());
-            }
+
             Long capacity= Long.parseLong(capacityStr);
             List<Ticket> filtered = collection.filterLessThanVenue(capacity);
             if (filtered.isEmpty()){
@@ -36,5 +34,13 @@ public class FilterLessThanVenue extends Command implements Serializable {
             }
         console.send(getAddress());
 
+    }
+
+    @Override
+    public void validate(String arg1) {
+        this.stringArg = arg1;
+        if (!Validator.validate(arg1, TypesOfArgs.Long,false) || Long.parseLong(stringArg)<=0){
+            throw new InvalidFormatException("Id должен быть числом > 0",getAddress());
+        }
     }
 }

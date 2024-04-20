@@ -1,8 +1,9 @@
 package org.common.commands;
 
 
-import org.common.utility.Console;
 import org.common.utility.InvalidFormatException;
+import org.common.utility.TypesOfArgs;
+import org.common.utility.Validator;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -18,14 +19,14 @@ public class RemoveGreaterKey extends Command implements  Serializable {
 
     @Override
     public void execute() {
-            var idStr=stringArg;
-            Long id = null;
+        Long id = null;
         try {
-            ValidateId.validateId(idStr, false, collection);
+            ValidateId.validateId(stringArg, false, collection);
         }catch (InvalidFormatException e){
             e.setAddress(getAddress());
             throw e;
-        }            int sizeBefore = collection.getCountOfElements();
+        }
+        int sizeBefore = collection.getCountOfElements();
             collection.removeGreaterKey(id);
             int sizeAfter = collection.getCountOfElements();
             if (sizeAfter != sizeBefore) {
@@ -36,6 +37,15 @@ public class RemoveGreaterKey extends Command implements  Serializable {
         console.send(getAddress());
 
 
+
+    }
+
+    @Override
+    public void validate(String arg1) {
+        this.stringArg = arg1;
+        if (!Validator.validate(stringArg, TypesOfArgs.Long,false) || Long.parseLong(stringArg)<=0){
+            throw new InvalidFormatException("Id должен быть числом > 0",getAddress());
+        }
 
     }
 }

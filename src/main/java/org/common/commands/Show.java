@@ -1,7 +1,5 @@
 package org.common.commands;
 
-import org.common.utility.Console;
-
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -25,5 +23,10 @@ public class Show extends Command implements Serializable {
                     .forEach(ticket -> console.addToSend(ticket.toString(),getAddress()) );
         }
         console.send(getAddress());
+    }
+
+    @Override
+    public void validate(String arg1) {
+
     }
 }

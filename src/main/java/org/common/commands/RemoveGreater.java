@@ -2,7 +2,6 @@ package org.common.commands;
 
 
 import org.common.dto.Ticket;
-import org.common.managers.*;
 import org.common.utility.*;
 
 
@@ -22,8 +21,16 @@ public class RemoveGreater extends Command implements Serializable {
     public void execute() {
             Ticket ticket = ticketArg;
             collection.removeGreater(ticket);
-            console.addToSend("Удалено успешно",getAddress());
+            console.addToSend("Операция прошла успешно",getAddress());
         console.send(getAddress());
 
+    }
+
+    @Override
+    public void validate(String arg1) {
+        this.stringArg = arg1;
+        if (!Validator.validate(stringArg, TypesOfArgs.Long,false) || Long.parseLong(stringArg)<=0){
+            throw new InvalidFormatException("Id должен быть числом > 0",getAddress());
+        }
     }
 }

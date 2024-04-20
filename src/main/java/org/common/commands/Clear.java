@@ -1,7 +1,5 @@
 package org.common.commands;
 
-import org.common.utility.Console;
-
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -18,5 +16,9 @@ public class Clear extends Command implements Serializable {
         collection.clearCollection();
         console.addToSend("Коллекция очищена",getAddress());
         console.send(getAddress());
+    }
+
+    @Override
+    public void validate(String arg1) {
     }
 }

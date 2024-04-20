@@ -1,7 +1,5 @@
 package org.common.commands;
 
-import org.common.utility.Console;
-
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -24,5 +22,9 @@ public class AverageOfPrice extends Command implements Serializable {
             console.addToSend("Средняя цена " + average.getAsDouble(),getAddress());
         }
         console.send(getAddress());
+    }
+
+    @Override
+    public void validate(String arg1) {
     }
 }

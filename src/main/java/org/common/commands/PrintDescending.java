@@ -1,7 +1,5 @@
 package org.common.commands;
 
-import org.common.utility.Console;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.Comparator;
@@ -25,6 +23,11 @@ public class PrintDescending extends Command implements Serializable {
                     .forEach(ticket -> console.addToSend(ticket.toString() ,getAddress()));
         }
         console.send(getAddress());
+
+    }
+
+    @Override
+    public void validate(String arg1) {
 
     }
 }

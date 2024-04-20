@@ -1,6 +1,5 @@
 package org.common.commands;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.common.dto.Ticket;
 import org.common.managers.Collection;
@@ -25,8 +24,8 @@ public abstract class Command implements Serializable {
     }
 
     public abstract void execute();
-    public void prepareToSend(String stringArg ,boolean ticketArgIsNeeded){
-        if (!stringArg.isEmpty()) this.setStringArg(stringArg);
+    public abstract void validate(String arg1);
+    public void prepareToSend(boolean ticketArgIsNeeded){
         if (ticketArgIsNeeded ) {
             Validator.validate(stringArg,TypesOfArgs.Long,false);
             CreateTicket creator = new CreateTicket(console);

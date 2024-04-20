@@ -1,7 +1,5 @@
 package org.common.commands;
 
-import org.common.utility.Console;
-
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -18,5 +16,9 @@ public class Exit extends Command implements Serializable {
         console.addToSend("Завершение работы",getAddress());
         console.send(getAddress());
         System.exit(0);
+    }
+
+    @Override
+    public void validate(String arg1) {
     }
 }

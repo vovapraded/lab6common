@@ -3,9 +3,6 @@ package org.common.commands;
 import java.io.*;
 import java.util.Scanner;
 
-import org.common.commands.*;
-import org.common.utility.Console;
-
 /**
  * Command for help info
  */
@@ -31,5 +28,10 @@ public class Help extends Command implements Serializable {
             console.addToSend("Файл help.txt не найден",getAddress());
         }
         console.send(getAddress());
+    }
+
+    @Override
+    public void validate(String arg1) {
+
     }
 }
